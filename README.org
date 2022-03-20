@@ -1,0 +1,23 @@
+# XMONAD Configuration
+
+I publish regularly my xmonad configuration
+for some friends.
+
+The main features are:
+
+- no usage of a status bar
+- support for modal editing like vim or i3,
+  see for instance [[file:MusicMode.hs]]
+  and [[file:ScreenshotMode.hs]]
+  as a small example.
+- mouse bindings are baked in, once I had to use a mouse
+  and I configured it and this [[https://mail.haskell.org/pipermail/xmonad/2010-July/010372.html][post]] was very helpful.
+- Support for emacs-like chording doing bindings like
+  #+begin_src haskell
+  [ ("M4-c c", spawn "notify-send -a say EZ hello")
+  , ("M4-c M4-s", screenshotMode)
+  , ("M4-c M4-m", musicMode)
+  ]
+  #+end_src
+  where =M4= is the windows modifier.
+
