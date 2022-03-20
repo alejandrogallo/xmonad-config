@@ -149,6 +149,7 @@ myMouseBindings = let leftclick   = 1
                   withMask (winkey .|. shiftMask)
                     [ (middleclick, \_ -> withFocused $ windows . W.sink)
                     , (leftclick  , \w -> focus w >> mouseMoveWindow w)
+                    , (rightclick, \w -> focus w >> mouseResizeWindow w)
                     , (wheelup , \_ -> sendMessage Shrink)
                     , (wheeldown, \_ -> sendMessage Expand)
                     ]
