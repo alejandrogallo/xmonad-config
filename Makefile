@@ -2,6 +2,7 @@ GHC ?= ghc
 DEPS = .deps/xmonad-contrib .deps/xmonad
 
 all: restart tags TAGS
+bin: xmonad-x86_64-linux
 
 restart: ./xmonad-x86_64-linux
 	./$< --restart
@@ -29,4 +30,4 @@ clean:
 nix:
 	nix-shell --pure --command make
 
-.PHONY: restart all cabal clean deps
+.PHONY: restart all cabal clean deps bin

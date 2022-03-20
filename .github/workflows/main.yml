@@ -21,4 +21,4 @@ jobs:
     - name: Install nix dependencies
       env:
         WITH_SHELL: "nix-shell --pure --run"
-      run: ${WITH_SHELL} 'make'
+      run: ${WITH_SHELL} 'make bin'
