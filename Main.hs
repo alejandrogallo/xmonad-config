@@ -165,6 +165,7 @@ myMouseBindings = let leftclick   = 1
 myKeys conf@XConfig {XMonad.modMask = meta}
   = M.union (emacsKeymap conf) $ M.fromList $
   [ ((winkey, xK_x), spawn "~/.dotfiles/bin/,dmenu-run")
+  , ((winkey, xK_e), spawn "emacsclient -c")
   , ((meta, xK_Return), spawn $ XMonad.terminal conf)
   , ((winkey, xK_Return), spawn $ XMonad.terminal conf)
   -- this is for the very small sub-40 crkbd
