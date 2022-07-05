@@ -306,5 +306,8 @@ emacsKeymap conf = EZ.mkKeymap conf $
   , ("M4-w t", withFocused $ windows . W.sink)
   , ("M4-w minus", withFocused minimizeWindow)
   , ("M4-w plus", withLastMinimized maximizeWindowAndFocus)
+
+  , ("M4-c M4-a a", spawn "~/.dotfiles/bin/,edit-arabic")
+  , ("M4-c M4-a h", spawn "~/.dotfiles/bin/,edit-hebrew")
   ]
     where wks = XMonad.workspaces conf

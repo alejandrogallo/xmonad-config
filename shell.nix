@@ -10,7 +10,7 @@ let
   myghc = haskellPackages.ghcWithPackages haskellDeps;
   nixPackages = [
     myghc
-    #haskell-language-server
+    haskell-language-server
     ctags
     git
     xmobar
