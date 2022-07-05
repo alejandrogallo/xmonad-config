@@ -28,6 +28,8 @@ import           XMonad.Hooks.DynamicLog ( dynamicLogWithPP, shorten
 import           XMonad.Layout.Maximize (maximizeRestore)
 import           XMonad.Layout.ToggleLayouts (ToggleLayout(Toggle))
 
+import           Graphics.X11.ExtraTypes.XF86
+
 import qualified Data.Map as M
 import           Control.Monad ((>=>))
 import           Data.String
@@ -170,6 +172,15 @@ myKeys conf@XConfig {XMonad.modMask = meta}
   , ((winkey, xK_Return), spawn $ XMonad.terminal conf)
   -- this is for the very small sub-40 crkbd
   , ((meta, xK_slash), spawn $ XMonad.terminal conf)
+
+  , ((0, xF86XK_AudioLowerVolume)
+    , spawn "~/.dotfiles/bin/,music lower_volume")
+  , ((0, xF86XK_AudioRaiseVolume)
+    , spawn "~/.dotfiles/bin/,music raise_volume")
+  , ((shiftMask, xF86XK_AudioLowerVolume)
+    , spawn "~/.dotfiles/bin/,music forward")
+  , ((shiftMask, xF86XK_AudioRaiseVolume)
+    , spawn "~/.dotfiles/bin/,music rewind")
 
   , ((winkey, xK_o), AGR.nextMatch AGR.History (return True))
   , ((winkey .|. shiftMask, xK_o), viewEmptyWorkspace)
