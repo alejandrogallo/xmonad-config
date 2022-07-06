@@ -307,6 +307,7 @@ emacsKeymap conf = EZ.mkKeymap conf $
   , ("M4-w minus", withFocused minimizeWindow)
   , ("M4-w plus", withLastMinimized maximizeWindowAndFocus)
 
+  , ("M4-u M4-x", spawn "env UNIVERSAL_ARGUMENT=1 ~/.dotfiles/bin/,dmenu-run")
   , ("M4-c M4-a a", spawn "~/.dotfiles/bin/,edit-arabic")
   , ("M4-c M4-a h", spawn "~/.dotfiles/bin/,edit-hebrew")
   ]
