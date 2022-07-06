@@ -39,6 +39,7 @@ import           Data.Word (Word64)
 
 import           Utils (notifySend)
 import           MusicMode (musicMode)
+import           ResizeMode (resizeMode)
 import           ScreenshotMode (screenshotMode)
 import           Layout (myLayout)
 
@@ -168,10 +169,10 @@ myKeys conf@XConfig {XMonad.modMask = meta}
   = M.union (emacsKeymap conf) $ M.fromList $
   [ ((winkey, xK_x), spawn "~/.dotfiles/bin/,dmenu-run")
   , ((winkey, xK_e), spawn "emacsclient -c")
-  , ((meta, xK_Return), spawn $ XMonad.terminal conf)
   , ((winkey, xK_Return), spawn $ XMonad.terminal conf)
   -- this is for the very small sub-40 crkbd
-  , ((meta, xK_slash), spawn $ XMonad.terminal conf)
+  --, ((meta, xK_Return), spawn $ XMonad.terminal conf)
+  --, ((meta, xK_slash), spawn $ XMonad.terminal conf)
 
   , ((0, xF86XK_AudioLowerVolume)
     , spawn "~/.dotfiles/bin/,music lower_volume")
@@ -193,17 +194,17 @@ myKeys conf@XConfig {XMonad.modMask = meta}
   , ((winkey .|. shiftMask, xK_q), withFocused killWindow)
 
   -- Move focus to the next window
-  , ((meta,               xK_j     ), windows W.focusDown)
+  --, ((meta,               xK_j     ), windows W.focusDown)
   , ((winkey .|. controlMask, xK_j     ), windows W.focusDown)
   -- Move focus to the previous window
-  , ((meta,               xK_k     ), windows W.focusUp  )
+  --, ((meta,               xK_k     ), windows W.focusUp  )
   , ((winkey .|. controlMask, xK_k     ), windows W.focusUp  )
   -- Swap the focused window with the next window
   , ((winkey .|. shiftMask, xK_j     ), windows W.swapDown  )
   -- Swap the focused window with the previous window
   , ((winkey .|. shiftMask, xK_k     ), windows W.swapUp    )
 
-  , ((meta .|. shiftMask, xK_semicolon), AC.defaultCommands >>= AC.runCommand)
+  --, ((meta .|. shiftMask, xK_semicolon), AC.defaultCommands >>= AC.runCommand)
 
   -- %! Move focus to the master window
   , ((winkey              , xK_m), windows W.focusMaster)
@@ -216,27 +217,18 @@ myKeys conf@XConfig {XMonad.modMask = meta}
   , ((winkey, xK_p), ACW.prevWS)
 
   , ((winkey .|. controlMask, xK_r), AWN.renameWorkspace def)
-  , ((meta, xK_z), ACW.rotOpposite)
+  , ((winkey, xK_z), ACW.rotOpposite)
 
   ] ++ [
 
-  -- Shrink the master area
-    ((meta,               xK_h     ), sendMessage Shrink)
-
-  -- Expand the master area
-  , ((meta,               xK_l     ), sendMessage Expand)
-
-  -- Push window back into tiling
-  , ((meta,               xK_t     ), withFocused $ windows . W.sink)
-
   -- Increment the number of windows in the master area
-  , ((winkey            , xK_comma ), sendMessage (IncMasterN 1))
+    ((winkey            , xK_comma ), sendMessage (IncMasterN 1))
 
   -- Deincrement the number of windows in the master area
   , ((winkey            , xK_period), sendMessage (IncMasterN (-1)))
 
-  , ((meta              , xK_g), dmenuActionWorkspace Go)
-  , ((meta .|. shiftMask, xK_g), dmenuActionWorkspace Shift)
+  --, ((meta              , xK_g), dmenuActionWorkspace Go)
+  --, ((meta .|. shiftMask, xK_g), dmenuActionWorkspace Shift)
   , ((winkey , xK_slash), dmenuActionWindow APW.Goto)
   ]
 
@@ -292,6 +284,7 @@ emacsKeymap conf = EZ.mkKeymap conf $
   [ ("M4-c c", spawn "notify-send -a say EZ hello")
   , ("M4-c M4-s", screenshotMode)
   , ("M4-c M4-m", musicMode)
+  , ("M4-c M4-r", resizeMode)
   , ("M4-c M4-semicolon", AC.defaultCommands >>= AC.runCommand)
   , ("M4-c M4-x M4-v", spawn "notify-send -a say EZ 'G-{c,x,v} yeah!'")
   , ("M4-<Tab>", sendMessage NextLayout >> notifyLayout)
