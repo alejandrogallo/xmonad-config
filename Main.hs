@@ -57,6 +57,7 @@ main = do
     , workspaces = myWorkspaces
     , keys = myKeys
     , modMask = altkey
+    --, mouseBindings = M.fromList myMouseBindings
     -- STYLING
     , normalBorderColor  = "#AAAAAA"
     , focusedBorderColor = "#AA00FF"
@@ -124,6 +125,7 @@ notifyLayout = do
 
 withMask m = map (\(sym, action) -> ((m, sym), action))
 
+myMouseBindings :: [((ButtonMask, Button), Window -> X ())]
 myMouseBindings = let leftclick   = 1
                       middleclick = 2
                       rightclick  = 3
@@ -172,7 +174,7 @@ myKeys conf@XConfig {XMonad.modMask = meta}
   , ((winkey, xK_Return), spawn $ XMonad.terminal conf)
   -- this is for the very small sub-40 crkbd
   --, ((meta, xK_Return), spawn $ XMonad.terminal conf)
-  --, ((meta, xK_slash), spawn $ XMonad.terminal conf)
+  , ((meta, xK_slash), return ())
 
   , ((0, xF86XK_AudioLowerVolume)
     , spawn "~/.dotfiles/bin/,music lower_volume")
@@ -303,5 +305,6 @@ emacsKeymap conf = EZ.mkKeymap conf $
   , ("M4-u M4-x", spawn "env UNIVERSAL_ARGUMENT=1 ~/.dotfiles/bin/,dmenu-run")
   , ("M4-c M4-a a", spawn "~/.dotfiles/bin/,edit-arabic")
   , ("M4-c M4-a h", spawn "~/.dotfiles/bin/,edit-hebrew")
+  , ("<XF86MenuKB>", spawn "~/.dotfiles/bin/,edit-hebrew")
   ]
     where wks = XMonad.workspaces conf

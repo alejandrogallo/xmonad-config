@@ -11,6 +11,8 @@ let
   nixPackages = [
     myghc
     haskell-language-server
+    xorg.libX11
+    xorg.libXmu
     ctags
     git
     xmobar

@@ -15,6 +15,6 @@ screenshotMode = do
     [ ((0, XM.xK_r), continue_spawn "~/.dotfiles/bin/screenshot.sh root")
     , ((0, XM.xK_w), continue_spawn "~/.dotfiles/bin/screenshot.sh active_window")
     , ((0, XM.xK_y), continue_spawn "~/.dotfiles/bin/screenshot.sh yank_last")
-    , ((0, XM.xK_Y), continue_spawn "~/.dotfiles/bin/screenshot.sh yank_last_path")
+    , ((0, XM.xK_p), continue_spawn "~/.dotfiles/bin/screenshot.sh yank_last_path")
     ]
     where continue_spawn cmd = do { XM.spawn cmd ; screenshotMode }

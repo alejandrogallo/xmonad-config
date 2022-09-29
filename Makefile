@@ -1,13 +1,14 @@
 GHC ?= ghc
 DEPS = .deps/xmonad-contrib .deps/xmonad
+bin_name = xmonad-$(shell uname -m)-linux
 
 all: restart tags TAGS
-bin: xmonad-x86_64-linux
+bin: $(bin_name)
 
-restart: ./xmonad-x86_64-linux
+restart: ./$(bin_name)
 	./$< --restart
 
-xmonad-x86_64-linux: Main.hs
+$(bin_name): Main.hs
 	$(GHC) -O2 $< -o $@
 
 tags TAGS: $(DEPS)
@@ -25,7 +26,7 @@ tags TAGS: $(DEPS)
 deps: $(DEPS)
 
 clean:
-	rm -v *.errors *.hi *.o xmonad-x86_64-linux
+	rm -v *.errors *.hi *.o $(bin_name)
 
 nix:
 	nix-shell --pure --command make
