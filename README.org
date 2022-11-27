@@ -21,3 +21,10 @@ The main features are:
   #+end_src
   where =M4= is the windows modifier.
 
+
+In terms of development, I have a workflow
+of having an =env= directory
+where all binaries enter that are created with
+the =shell.nix= file.
+Then emacs takes ahold of them through
+=.dir-locals.el=. 

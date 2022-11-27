@@ -23,4 +23,11 @@ mkShell rec {
   name = "gallo-xmonad";
   buildInputs = nixPackages;
   system = builtins.currentSystem;
+  shellHook = ''
+  export HASKELL_PATH=${myghc}
+
+  mkdir -p env/bin
+  ln -frs ${myghc}/bin/* env/bin/
+  ln -frs ${haskell-language-server}/bin/* env/bin/
+  '';
 }

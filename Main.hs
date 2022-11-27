@@ -167,6 +167,7 @@ myMouseBindings = let leftclick   = 1
                     ]
 
 
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = meta}
   = M.union (emacsKeymap conf) $ M.fromList $
   [ ((winkey, xK_x), spawn "~/.dotfiles/bin/,dmenu-run")
