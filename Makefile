@@ -32,4 +32,7 @@ clean:
 nix:
 	nix-shell --pure --command make
 
+env: shell.nix
+	nix-shell --run 'ls env'
+
 .PHONY: restart all cabal clean deps bin
