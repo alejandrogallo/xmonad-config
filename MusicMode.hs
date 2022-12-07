@@ -29,6 +29,9 @@ musicMode = do
     , ((0, XM.xK_p), continue_spawn "~/.dotfiles/bin/,music pause")
     , ((0, XM.xK_g), continue_spawn "~/.dotfiles/bin/,music get_current_info")
 
+    , ((0, XM.xK_colon), continue_spawn "~/.dotfiles/bin/,mpc")
+    , ((0, XM.xK_slash), continue_spawn "~/.dotfiles/bin/,mpc playlist")
+
     , ((0, XM.xK_Escape), notifySend " -- NORMAL -- " "")
     ]
     where continue_spawn cmd = do { XM.spawn cmd ; musicMode }

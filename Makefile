@@ -2,14 +2,15 @@ GHC ?= ghc
 DEPS = .deps/xmonad-contrib .deps/xmonad
 bin_name = xmonad-$(shell uname -m)-linux
 
-all: restart tags TAGS
 bin: $(bin_name)
+
+all: restart tags TAGS
 
 restart: ./$(bin_name)
 	./$< --restart
 
-$(bin_name): Main.hs
-	$(GHC) -O2 $< -o $@
+$(bin_name): $(wildcard *.hs)
+	$(GHC) -O2 Main.hs -o $@
 
 tags TAGS: $(DEPS)
 	ctags -a -R $?
