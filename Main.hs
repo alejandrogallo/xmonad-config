@@ -288,6 +288,7 @@ emacsKeymap conf = EZ.mkKeymap conf $
   , ("M4-c M4-s", screenshotMode)
   , ("M4-c M4-m", musicMode)
   , ("M4-c M4-r", resizeMode)
+  , ("M4-c M4-f", spawn "warpd --hint --oneshot")
   , ("M4-c M4-semicolon", AC.defaultCommands >>= AC.runCommand)
   , ("M4-c M4-x M4-v", spawn "notify-send -a say EZ 'G-{c,x,v} yeah!'")
   , ("M4-<Tab>", sendMessage NextLayout >> notifyLayout)
@@ -302,6 +303,10 @@ emacsKeymap conf = EZ.mkKeymap conf $
   , ("M4-w t", withFocused $ windows . W.sink)
   , ("M4-w minus", withFocused minimizeWindow)
   , ("M4-w plus", withLastMinimized maximizeWindowAndFocus)
+
+  , ("M4-q M4-a", spawn "~/.dotfiles/bin/,xmacro rec")
+  , ("M4-q M4-w", spawn "~/.dotfiles/bin/,xmacro play")
+  , ("M4-q M4-q", spawn "~/.dotfiles/bin/,xmacro stop")
 
   , ("M4-u M4-x", spawn "env UNIVERSAL_ARGUMENT=1 ~/.dotfiles/bin/,dmenu-run")
   , ("M4-c M4-a a", spawn "~/.dotfiles/bin/,edit-arabic")
